@@ -5,6 +5,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import myImage from './Surendra_Digital_Illustration.png';
 import { useState } from 'react'
+import Footer from '@/src/components/Footer';
+import Sidebar from '@/src/components/Sidebar';
 
 export default function Home() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -40,33 +42,7 @@ export default function Home() {
       </header>
 
       {/* Mobile Sidebar */}
-      {sidebarOpen && (
-        <>
-          {/* Overlay */}
-          <div
-            className="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden"
-            onClick={() => setSidebarOpen(false)}
-          ></div>
-
-          {/* Sidebar */}
-          <div className="fixed top-0 right-0 h-full w-64 bg-white shadow-2xl z-50 md:hidden transform transition-transform duration-300">
-            <div className="p-4">
-              <button
-                onClick={() => setSidebarOpen(false)}
-                className="absolute top-4 right-4 p-2 hover:bg-gray-100 rounded-lg transition"
-              >
-                <X className="w-6 h-6 text-gray-700" />
-              </button>
-
-              <nav className="mt-12 space-y-2">
-                <SidebarLink icon={Layers} label="Works" onClick={() => setSidebarOpen(false)} />
-                <SidebarLink icon={FileText} label="Resume" onClick={() => setSidebarOpen(false)} />
-                <SidebarLink icon={Layers} label="Shelf" onClick={() => setSidebarOpen(false)} />
-              </nav>
-            </div>
-          </div>
-        </>
-      )}
+      {sidebarOpen && <Sidebar close={() => setSidebarOpen(false)} />}
 
       {/* Hero Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
@@ -260,33 +236,19 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-white border-t mt-4">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex justify-between items-center">
-            <p className="text-gray-600">
-              © 2025 Surendra Kumar. All rights reserved.
-            </p>
-            <div className="hidden md:flex flex space-x-6">
-              <a href="https://www.linkedin.com/in/skvg" className="text-gray-600 hover:text-red-500 transition">
-                LinkedIn
-              </a>
-              <a href="https://github.com/skvg" className="text-gray-600 hover:text-red-500 transition">
-                GitHub
-              </a>
-              <a href="mailto:surendra.kumar.devara@gmail.com" className="text-gray-600 hover:text-red-500 transition">
-                Email
-              </a>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </main>
   )
 }
 
 // Navigation Button Component with hover tilt effect
 function NavButton({ icon: Icon, label }: { icon: any; label: string }) {
-  const href = label === 'Resume' ? '/resume' : '#'
+  const hrefMap: { [key: string]: string } = {
+    'Works': '/projects',
+    'Resume': '/resume',
+    'Shelf': '/blogs'
+  }
+  const href = hrefMap[label] || '#'
   
   return (
     <Link href={href} className="group px-4 py-2 text-gray-700 hover:text-white font-medium flex items-center rounded-lg transition-all duration-300 hover:bg-red-500 perspective-1000">
@@ -294,22 +256,6 @@ function NavButton({ icon: Icon, label }: { icon: any; label: string }) {
         <Icon className="w-4 h-4 mr-2" />
         {label}
       </span>
-    </Link>
-  )
-}
-
-// Sidebar Link Component
-function SidebarLink({ icon: Icon, label, onClick }: { icon: any; label: string; onClick: () => void }) {
-  const href = label === 'Resume' ? '/resume' : '#'
-  
-  return (
-    <Link
-      href={href}
-      onClick={onClick}
-      className="w-full flex items-center px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-lg transition-colors duration-200"
-    >
-      <Icon className="w-5 h-5 mr-3" />
-      <span className="font-medium">{label}</span>
     </Link>
   )
 }
