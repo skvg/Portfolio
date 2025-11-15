@@ -2,6 +2,7 @@
 
 import { Linkedin, Github, Twitter, Mail, Menu, X, FileText, Layers } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 import myImage from './Surendra_Digital_Illustration.png';
 import { useState } from 'react'
 
@@ -285,26 +286,31 @@ export default function Home() {
 
 // Navigation Button Component with hover tilt effect
 function NavButton({ icon: Icon, label }: { icon: any; label: string }) {
+  const href = label === 'Resume' ? '/resume' : '#'
+  
   return (
-    <button className="group px-4 py-2 text-gray-700 hover:text-white font-medium flex items-center rounded-lg transition-all duration-300 hover:bg-red-500 perspective-1000">
+    <Link href={href} className="group px-4 py-2 text-gray-700 hover:text-white font-medium flex items-center rounded-lg transition-all duration-300 hover:bg-red-500 perspective-1000">
       <span className="flex items-center transform group-hover:rotate-y-12 transition-transform duration-300">
         <Icon className="w-4 h-4 mr-2" />
         {label}
       </span>
-    </button>
+    </Link>
   )
 }
 
 // Sidebar Link Component
 function SidebarLink({ icon: Icon, label, onClick }: { icon: any; label: string; onClick: () => void }) {
+  const href = label === 'Resume' ? '/resume' : '#'
+  
   return (
-    <button
+    <Link
+      href={href}
       onClick={onClick}
       className="w-full flex items-center px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-lg transition-colors duration-200"
     >
       <Icon className="w-5 h-5 mr-3" />
       <span className="font-medium">{label}</span>
-    </button>
+    </Link>
   )
 }
 
