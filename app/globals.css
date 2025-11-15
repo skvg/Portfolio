@@ -41,3 +41,28 @@ body {
   border-radius: 4px;
   transition: width 1s ease-out;
 }
+
+/* Perspective for 3D tilt effect */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+/* 3D Tilt on hover for navigation buttons */
+.group:hover span {
+  transform: rotateY(20deg);
+  transform-style: preserve-3d;
+}
+
+/* Smooth sidebar animation */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.sidebar-enter {
+  animation: slideInRight 0.3s ease-out;
+}
