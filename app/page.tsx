@@ -1,43 +1,71 @@
 'use client'
 
-import { Linkedin, Github, Twitter, Mail, Settings, FileText, Layers } from 'lucide-react'
+import { Linkedin, Github, Twitter, Mail, Menu, X, FileText, Layers } from 'lucide-react'
 import Image from 'next/image'
 import myImage from './Surendra_Digital_Illustration.png';
+import { useState } from 'react'
 
 export default function Home() {
+  const [sidebarOpen, setSidebarOpen] = useState(false)
+
   return (
     <main className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
       {/* Header */}
       <header className="bg-white shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
           <div className="flex items-center space-x-4">
-            <span className="text-gray-600 flex items-center">
+            <a href="mailto:surendra.kumar.devara@gmail.com" className="text-gray-600 flex items-center text-sm sm:text-base">
               <Mail className="w-4 h-4 mr-2" />
-              surendra.kumar.devara@gmail.com
-            </span>
+              <span className="hidden sm:inline">surendra.kumar.devara@gmail.com</span>
+              <span className="sm:hidden">Email</span>
+            </a>
           </div>
-          <nav className="flex space-x-8">
-            <button className="px-4 py-3 text-white bg-red-500 font-medium flex items-center">
-              <Layers className="w-4 h-4 mr-2" />
-              Works
-            </button>
-            <button className="px-4 py-3 text-gray-600 hover:text-gray-900 font-medium flex items-center">
-              <FileText className="w-4 h-4 mr-2" />
-              Resume
-            </button>
-            <button className="px-4 py-3 text-gray-600 hover:text-gray-900 font-medium flex items-center">
-              <Layers className="w-4 h-4 mr-2" />
-              Shelf
-            </button>
+          
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex space-x-4">
+            <NavButton icon={Layers} label="Works" />
+            <NavButton icon={FileText} label="Resume" />
+            <NavButton icon={Layers} label="Shelf" />
           </nav>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setSidebarOpen(true)}
+            className="md:hidden p-2 hover:bg-gray-100 rounded-lg transition"
+          >
+            <Menu className="w-6 h-6 text-gray-700" />
+          </button>
         </div>
       </header>
 
-      {/* Navigation Tabs */}
-      <div className="bg-white border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        </div>
-      </div>
+      {/* Mobile Sidebar */}
+      {sidebarOpen && (
+        <>
+          {/* Overlay */}
+          <div
+            className="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden"
+            onClick={() => setSidebarOpen(false)}
+          ></div>
+
+          {/* Sidebar */}
+          <div className="fixed top-0 right-0 h-full w-64 bg-white shadow-2xl z-50 md:hidden transform transition-transform duration-300">
+            <div className="p-4">
+              <button
+                onClick={() => setSidebarOpen(false)}
+                className="absolute top-4 right-4 p-2 hover:bg-gray-100 rounded-lg transition"
+              >
+                <X className="w-6 h-6 text-gray-700" />
+              </button>
+
+              <nav className="mt-12 space-y-2">
+                <SidebarLink icon={Layers} label="Works" onClick={() => setSidebarOpen(false)} />
+                <SidebarLink icon={FileText} label="Resume" onClick={() => setSidebarOpen(false)} />
+                <SidebarLink icon={Layers} label="Shelf" onClick={() => setSidebarOpen(false)} />
+              </nav>
+            </div>
+          </div>
+        </>
+      )}
 
       {/* Hero Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
@@ -66,7 +94,7 @@ export default function Home() {
               {/* Social Links */}
               <div className="flex space-x-4 mb-8">
                 <a 
-                  href="https://www.linkedin.com/in/surendra-kumar-devara" 
+                  href="https://www.linkedin.com/in/skvg" 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-3 bg-gray-100 hover:bg-gray-200 rounded-lg transition"
@@ -74,21 +102,21 @@ export default function Home() {
                   <Linkedin className="w-5 h-5 text-gray-700" />
                 </a>
                 <a 
-                  href="https://github.com/surendrakumar"
+                  href="https://github.com/skvg"
                   target="_blank"
                   rel="noopener noreferrer" 
                   className="p-3 bg-gray-100 hover:bg-gray-200 rounded-lg transition"
                 >
                   <Github className="w-5 h-5 text-gray-700" />
                 </a>
-                <a 
+                {/* <a 
                   href="https://twitter.com/surendrakumar"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-3 bg-gray-100 hover:bg-gray-200 rounded-lg transition"
                 >
                   <Twitter className="w-5 h-5 text-gray-700" />
-                </a>
+                </a> */}
               </div>
 
               {/* CTA Button */}
@@ -231,17 +259,17 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-white border-t mt-16">
+      <footer className="bg-white border-t mt-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex justify-between items-center">
             <p className="text-gray-600">
               © 2025 Surendra Kumar. All rights reserved.
             </p>
-            <div className="flex space-x-6">
-              <a href="https://www.linkedin.com/in/surendra-kumar-devara" className="text-gray-600 hover:text-red-500 transition">
+            <div className="hidden md:flex flex space-x-6">
+              <a href="https://www.linkedin.com/in/skvg" className="text-gray-600 hover:text-red-500 transition">
                 LinkedIn
               </a>
-              <a href="https://github.com/surendrakumar" className="text-gray-600 hover:text-red-500 transition">
+              <a href="https://github.com/skvg" className="text-gray-600 hover:text-red-500 transition">
                 GitHub
               </a>
               <a href="mailto:surendra.kumar.devara@gmail.com" className="text-gray-600 hover:text-red-500 transition">
@@ -255,20 +283,28 @@ export default function Home() {
   )
 }
 
-function SkillBar({ skill, level }: { skill: string; level: number }) {
+// Navigation Button Component with hover tilt effect
+function NavButton({ icon: Icon, label }: { icon: any; label: string }) {
   return (
-    <div>
-      <div className="flex justify-between mb-2">
-        <span className="text-gray-700 font-medium">{skill}</span>
-        <span className="text-gray-500 text-sm">{level}%</span>
-      </div>
-      <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
-        <div
-          className="h-full bg-gradient-to-r from-red-500 to-red-600 rounded-full transition-all duration-1000 ease-out"
-          style={{ width: `${level}%` }}
-        ></div>
-      </div>
-    </div>
+    <button className="group px-4 py-2 text-gray-700 hover:text-white font-medium flex items-center rounded-lg transition-all duration-300 hover:bg-red-500 perspective-1000">
+      <span className="flex items-center transform group-hover:rotate-y-12 transition-transform duration-300">
+        <Icon className="w-4 h-4 mr-2" />
+        {label}
+      </span>
+    </button>
+  )
+}
+
+// Sidebar Link Component
+function SidebarLink({ icon: Icon, label, onClick }: { icon: any; label: string; onClick: () => void }) {
+  return (
+    <button
+      onClick={onClick}
+      className="w-full flex items-center px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-lg transition-colors duration-200"
+    >
+      <Icon className="w-5 h-5 mr-3" />
+      <span className="font-medium">{label}</span>
+    </button>
   )
 }
 
