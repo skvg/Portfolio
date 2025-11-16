@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowLeft, Calendar, Clock, Mail, Menu, X, FileText, Layers } from 'lucide-react'
+import { X, FileText, Layers, BookOpen } from 'lucide-react'
 import { useEffect, useState } from "react";
 
 export default function Sidebar({close} : {close: ()=>void}) {
@@ -27,7 +27,7 @@ export default function Sidebar({close} : {close: ()=>void}) {
                     <nav className="mt-12 space-y-2">
                         <SidebarLink icon={Layers} label="Works" href="/projects" onClick={close} active={page == 'projects'} />
                         <SidebarLink icon={FileText} label="Resume" href="/resume" onClick={close} active={page == 'resume'} />
-                        <SidebarLink icon={Layers} label="Shelf" href="/blogs" onClick={close} active={page == 'blogs'} />
+                        <SidebarLink icon={BookOpen} label="Blog" href="/blogs" onClick={close} active={page == 'blogs'} />
                     </nav>
                 </div>
             </div>

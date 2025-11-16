@@ -1,4 +1,4 @@
-import { Mail, Menu, FileText, Layers } from 'lucide-react'
+import { Mail, Menu, FileText, Layers, BookOpen } from 'lucide-react'
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import Sidebar from './Sidebar';
@@ -36,7 +36,7 @@ export default function Header() {
                 <nav className="hidden md:flex space-x-4">
                     <NavButton icon={Layers} label="Works" href="/projects" active={page == 'projects'} />
                     <NavButton icon={FileText} label="Resume" href="/resume" active={page == 'resume'} />
-                    <NavButton icon={Layers} label="Shelf" href="/blogs" active={page == 'blogs'} />
+                    <NavButton icon={BookOpen} label="Blog" href="/blogs" active={page == 'blogs'} />
                 </nav>
 
                 <button
