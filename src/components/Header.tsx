@@ -29,7 +29,7 @@ export default function Header() {
                     </div>
                     :
                     <Link href="/" className="flex items-center space-x-4">
-                        <span className="text-2xl font-bold text-red-500">HOME</span>
+                        <span className="text-2xl font-bold text-red-500">🛖HOME</span>
                     </Link>
                 }
 
