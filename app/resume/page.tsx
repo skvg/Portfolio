@@ -1,5 +1,6 @@
 'use client'
 
+import Footer from '@/src/components/Footer'
 import { Download, ArrowLeft, Mail } from 'lucide-react'
 import Link from 'next/link'
 
@@ -7,7 +8,7 @@ export default function ResumePage() {
   const handleDownload = () => {
     // Create a link element and trigger download
     const link = document.createElement('a')
-    link.href = '/Resume-2025.pdf'
+    link.href = '/Resume.pdf'
     link.download = 'Surendra_Kumar_Resume.pdf'
     document.body.appendChild(link)
     link.click()
@@ -57,7 +58,7 @@ export default function ResumePage() {
               {/* PDF Embed */}
               <div className="w-full" style={{ height: 'calc(100vh - 250px)', minHeight: '600px' }}>
                 <iframe
-                  src="/Resume-2025.pdf"
+                  src="/Resume.pdf"
                   className="w-full h-full"
                   title="Surendra Kumar Resume"
                 />
@@ -102,13 +103,7 @@ export default function ResumePage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-white border-t mt-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="text-center text-gray-600">
-            <p>© 2025 Surendra Kumar. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </main>
   )
 }
