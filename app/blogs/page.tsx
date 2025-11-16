@@ -67,45 +67,43 @@ export default function BlogsPage() {
 
 function BlogCard({ blog }: { blog: any }) {
   return (
-    <Link href={`/blogs/${blog.slug}`}>
-      <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 h-full flex flex-col">
-        <div className="p-6 flex-1 flex flex-col">
-          <div className="flex items-center text-sm text-gray-500 mb-3">
-            <Calendar className="w-4 h-4 mr-2" />
-            {new Date(blog.date).toLocaleDateString('en-US', { 
-              year: 'numeric', 
-              month: 'long', 
-              day: 'numeric' 
-            })}
-            <span className="mx-2">•</span>
-            <span>{blog.readTime}</span>
-          </div>
-          
-          <h2 className="text-2xl font-bold text-gray-900 mb-3 hover:text-red-500 transition-colors">
-            {blog.title}
-          </h2>
-          
-          <p className="text-gray-600 mb-4 flex-1">
-            {blog.excerpt}
-          </p>
-          
-          <div className="flex flex-wrap gap-2 mb-4">
-            {blog.tags.slice(0, 3).map((tag: string) => (
-              <span 
-                key={tag}
-                className="px-3 py-1 bg-red-50 text-red-600 rounded-full text-sm font-medium"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-          
-          <div className="flex items-center text-red-500 font-semibold">
-            Read More
-            <ArrowRight className="w-4 h-4 ml-2" />
-          </div>
+    <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 h-full flex flex-col">
+      <div className="p-6 flex-1 flex flex-col">
+        <div className="flex items-center text-sm text-gray-500 mb-3">
+          <Calendar className="w-4 h-4 mr-2" />
+          {new Date(blog.date).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+          })}
+          <span className="mx-2">•</span>
+          <span>{blog.readTime}</span>
+        </div>
+
+        <h2 className="text-2xl font-bold text-gray-900 mb-3 hover:text-red-500 transition-colors">
+          {blog.title}
+        </h2>
+
+        <p className="text-gray-600 mb-4 flex-1">
+          {blog.excerpt}
+        </p>
+
+        <div className="flex flex-wrap gap-2 mb-4">
+          {blog.tags.slice(0, 3).map((tag: string) => (
+            <span
+              key={tag}
+              className="px-3 py-1 bg-red-50 text-red-600 rounded-full text-sm font-medium"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        <div className="flex items-center text-red-500 font-semibold">
+          Read More
+          <ArrowRight className="w-4 h-4 ml-2" />
         </div>
       </div>
-    </Link>
+    </div>
   )
 }

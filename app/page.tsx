@@ -69,7 +69,7 @@ export default function Home() {
 
             {/* Right Content - Profile Image */}
             <div className="flex justify-center">
-              <Image src={myImage} alt='myImage' style={{objectFit: 'contain', maxHeight:'500px'}} />
+              <Image unoptimized={true} src={myImage} alt='myImage' style={{objectFit: 'contain', maxHeight:'500px'}} />
             </div>
           </div>
         </div>

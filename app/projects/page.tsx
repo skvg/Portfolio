@@ -67,9 +67,9 @@ export default function ProjectsPage() {
   const [selectedCategory, setSelectedCategory] = useState('All')
 
   const categories = ['All', ...Array.from(new Set(projects.map(p => p.category)))]
-  
-  const filteredProjects = selectedCategory === 'All' 
-    ? projects 
+
+  const filteredProjects = selectedCategory === 'All'
+    ? projects
     : projects.filter(p => p.category === selectedCategory)
 
   return (
@@ -94,11 +94,10 @@ export default function ProjectsPage() {
             <button
               key={category}
               onClick={() => setSelectedCategory(category)}
-              className={`px-4 py-2 rounded-lg font-medium transition-all ${
-                selectedCategory === category
+              className={`px-4 py-2 rounded-lg font-medium transition-all ${selectedCategory === category
                   ? 'bg-red-500 text-white shadow-lg'
                   : 'bg-white text-gray-700 hover:bg-red-50 hover:text-red-600'
-              }`}
+                }`}
             >
               {category}
             </button>
@@ -123,46 +122,44 @@ export default function ProjectsPage() {
 
 function ProjectCard({ project }: { project: any }) {
   return (
-    <Link href={`/projects/${project.slug}`}>
-      <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 h-full flex flex-col">
-        {/* Project Image Placeholder */}
-        <div className="h-48 bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center">
-          <span className="text-white text-6xl font-bold opacity-20">
-            {project.title.charAt(0)}
-          </span>
+    <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 h-full flex flex-col">
+      {/* Project Image Placeholder */}
+      <div className="h-48 bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center">
+        <span className="text-white text-6xl font-bold opacity-20">
+          {project.title.charAt(0)}
+        </span>
+      </div>
+
+      <div className="p-6 flex-1 flex flex-col">
+        <div className="flex items-center justify-between mb-3">
+          <span className="text-sm font-semibold text-red-500">{project.category}</span>
+          <span className="text-sm text-gray-500">{project.year}</span>
         </div>
-        
-        <div className="p-6 flex-1 flex flex-col">
-          <div className="flex items-center justify-between mb-3">
-            <span className="text-sm font-semibold text-red-500">{project.category}</span>
-            <span className="text-sm text-gray-500">{project.year}</span>
-          </div>
-          
-          <h3 className="text-xl font-bold text-gray-900 mb-3 hover:text-red-500 transition-colors">
-            {project.title}
-          </h3>
-          
-          <p className="text-gray-600 mb-4 flex-1">
-            {project.description}
-          </p>
-          
-          <div className="flex flex-wrap gap-2">
-            {project.tags.slice(0, 3).map((tag: string) => (
-              <span 
-                key={tag}
-                className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium"
-              >
-                {tag}
-              </span>
-            ))}
-            {project.tags.length > 3 && (
-              <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium">
-                +{project.tags.length - 3}
-              </span>
-            )}
-          </div>
+
+        <h3 className="text-xl font-bold text-gray-900 mb-3 hover:text-red-500 transition-colors">
+          {project.title}
+        </h3>
+
+        <p className="text-gray-600 mb-4 flex-1">
+          {project.description}
+        </p>
+
+        <div className="flex flex-wrap gap-2">
+          {project.tags.slice(0, 3).map((tag: string) => (
+            <span
+              key={tag}
+              className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium"
+            >
+              {tag}
+            </span>
+          ))}
+          {project.tags.length > 3 && (
+            <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium">
+              +{project.tags.length - 3}
+            </span>
+          )}
         </div>
       </div>
-    </Link>
+    </div>
   )
 }
